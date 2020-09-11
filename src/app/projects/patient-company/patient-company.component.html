@@ -1,0 +1,42 @@
+
+
+
+<form [formGroup]="PatientCompany" >
+ CompanyId:  {{SelectedCompanyID}}
+ 
+<div class="shadow p-3 mb-5 bg-white rounded" style="margin-top: 30px;">
+<table class="table table-bordered table- table-hover  w-auto" >
+<thead style="background-color:rgb(136, 177, 224);">
+  <tr>
+   
+      <th>Company Name</th>
+      <th>Company Class</th>
+     
+  </tr>
+</thead>
+  <tbody>
+  <tr>
+      <td>
+        <select id="Company" style="height: 40px;width: 150px;" [(ngModel)]="SelectedCompanyID"   (change)="OnSelectCompany($event.target.value)" class="form-control" formControlName="CompanyList" >
+          
+          <option *ngFor="let cmp of CompanyList" value="{{cmp.CompanyID}}"  >{{cmp.CompanyName}}</option>
+
+        </select>
+      </td>
+      <td>
+        <select id="CompanyClass" style="height: 40px;width: 150px;"   class="form-control" (change)="OnSelectCompanyClass($event.target.value)"  formControlName="CompanyClass" >
+          <option *ngFor="let cmpclass of CompanyClass" value="{{cmpclass.CompanyClassID}}"  >{{cmpclass.CompanyClassName}}</option>
+
+        </select>
+      </td>
+  
+  </tr>
+
+  </tbody>
+
+</table>
+
+
+</div>
+
+</form>

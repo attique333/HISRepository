@@ -1,0 +1,209 @@
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<div class="container">
+  <div class="panel-group">
+    <div class="panel panel-warning" >
+      <div class="panel-heading" >
+        <button class="btn" (click)="OnNew()" [disabled]='!IsNew'>
+            <span class="glyphicon glyphicon-new-window"  >New</span>
+        
+        </button>
+
+        <button class="btn" [disabled]='!IsSave' (click)="OnSaveRecord()">
+            <span class="glyphicon glyphicon-floppy-saved" >Save</span>
+        
+        </button>
+
+        <button class="btn" [disabled]='!IsEdit'>
+            <span class="glyphicon glyphicon-edit">Edit</span>
+          
+        </button>
+
+        <button class="btn" (click)="OnDiscard()" [disabled]='!IsDiscard'>
+            <span class="glyphicon glyphicon-trash">Discard</span>
+        </button>
+      </div>
+      <div class="panel-body" style="background: #97b1d6;">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Registration</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Details</a>
+          </li>
+
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+            <div class="row register-form" >
+                
+             
+              <form [formGroup]="PatientRegistrationGroup" style="margin-left: 20px; margin-top: 30px;" >
+                <div class="row">
+      
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class="label-font">First Name</label>
+                      <input type="text" [ngClass]="{ 'is-invalid': submitted && f.FirstName.errors }" class="form-control" formControlName="FirstName" [(ngModel)]="PatientRegistration.FirstName" placeholder="Enter First Name">
+                      <div *ngIf="submitted && f.FirstName.errors" class="invalid-feedback">
+                        <div *ngIf="f.FirstName.errors.required">First Name is required</div>
+                    </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="label-font">Middle Name</label>
+                      <input type="text" class="form-control" formControlName="MiddleName"  [(ngModel)]="PatientRegistration.MiddleName" placeholder="Enter Middle Name">
+                    </div>
+                    <div class="form-group">
+                      <label class="label-font">Last Name</label>
+                      <input type="text" [ngClass]="{ 'is-invalid': submitted && f.LastName.errors }" class="form-control" formControlName="LastName" [(ngModel)]="PatientRegistration.LastName"  placeholder="Enter Last Name">
+                      <div *ngIf="submitted && f.LastName.errors" class="invalid-feedback">
+                        <div *ngIf="f.LastName.errors.required">Last Name is required</div>
+                    </div>
+                    </div>
+                  </div>
+      
+                  <div class="col-md-4">
+                    <div class="form-group" >
+                      <label class="label-font">Nationality</label>
+      
+                      <select id="Nationality" [ngClass]="{ 'is-invalid': submitted && f.Nationality.errors }" style="height: 40px;width: 150px;" class="form-control" [(ngModel)]="PatientRegistration.Nationality" formControlName="Nationality" >
+                        <option value=''></option>
+                        <option *ngFor="let Nat of AllNationalities" [ngValue]="Nat.NationalityID" >{{Nat.Nationality}}</option>
+      
+                      </select>
+                      <div *ngIf="submitted && f.Nationality.errors" class="invalid-feedback">
+                        <div *ngIf="f.Nationality.errors.required">Select Nationality</div>
+                    </div>
+                    </div>
+                    <div class="form-group" style="width: 150px;">
+                      <label class="label-font">City</label>
+      
+                      <select id="City" [ngClass]="{ 'is-invalid': submitted && f.City.errors }" style="height: 40px;" class="form-control"  [(ngModel)]="PatientRegistration.City" formControlName="City" ng-model="name">
+                        <option value=''></option>
+                        <option value="1">Rawalpindi</option>
+                        <option value="2">Los Angles</option>
+                        <option value="3">Moscow</option>
+      
+                      </select>
+                      <div *ngIf="submitted && f.City.errors" class="invalid-feedback">
+                        <div *ngIf="f.City.errors.required">Select City</div>
+                    </div>
+                    </div>
+                    <div class="form-group" style="width: 150px;">
+                      <label class="label-font">Gender</label>
+      
+                      <select id="Gender" [ngClass]="{ 'is-invalid': submitted && f.Gender.errors }" style="height: 30px;width: 150px;" class="form-control"  [(ngModel)]="PatientRegistration.Gender" formControlName="Gender" ng-model="name">
+                        <option value=''></option>
+                        <option value="1">Male</option>
+                        <option value="2">Female</option>
+                        <option value="3"> Others</option>
+      
+                      </select>
+                      <div *ngIf="submitted && f.Gender.errors" class="invalid-feedback">
+                        <div *ngIf="f.Gender.errors.required">Gender is required</div>
+                    </div>
+                    </div>
+                  </div>
+      
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class="label-font">Address</label>
+                      <textarea class="form-control" [(ngModel)]="PatientRegistration.Address" formControlName="Address" rows="5">
+      
+                          </textarea>
+                    </div>
+                    <div class="form-group">
+                      <label class="label-font">Email Address</label>
+                      <input type="email" class="form-control" [(ngModel)]="PatientRegistration.Email" formControlName="Email" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        placeholder="Enter email">
+      
+                    </div>
+      
+                  </div>
+      
+                </div>
+      
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class="label-font">National ID</label>
+                      <input type="text" class="form-control" formControlName="NationalID" [(ngModel)]="PatientRegistration.NationalID"  placeholder="Enter National ID">
+                    </div>
+                    <div class="form-group">
+                      <label class="label-font">Passport Num</label>
+                      <input type="text" class="form-control" formControlName="PassportNum" [(ngModel)]="PatientRegistration.PassportNum" placeholder="Enter Passport Num">
+                    </div>
+                    <div class="form-group">
+                      <label class="label-font">Contact Num</label>
+                      <input type="text" class="form-control" formControlName="PhoneNum" [(ngModel)]="PatientRegistration.ContactNum"  placeholder="Enter Phone Number">
+                    </div>
+                  </div>
+                </div>
+           
+              </form>
+
+
+            </div>
+
+            <div >
+
+              <app-patient-company [SelectedCompanyID]="CompanyRecordID"></app-patient-company>
+            
+            </div>
+
+          </div>
+          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+
+          <div class="row" style="margin-left: 20px; margin-top: 30px;" >
+            <table class="blueTable" id="dataTable" width="100%" cellspacing="5">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th scope="col">ID </th>
+                  <th scope="col">Name </th>
+                  <th scope="col">Gender </th>
+                  <th scope="col">Nationality </th>
+                  <th scope="col">Patient Type </th>
+                  <th scope="col">Created On </th>
+                </tr>
+              </thead>
+              <tbody>
+       
+                <tr  *ngFor="let patient of AllPatientList">
+                  
+                  <td>  
+                   
+                    <button class="btn" (click)="GetPatientByID(patient)">
+                      <a  >
+                        <span class="glyphicon glyphicon-edit">Select</span>
+                      </a>
+                    </button>
+                   
+                  </td>
+                  <td>{{patient.PatientID}}</td>
+                  <td>{{patient.PatientName}}</td>
+                  <td>
+                      <div *ngIf="patient.Gender==1;else female">Male</div>
+                      <ng-template #female>Female</ng-template>
+                  </td>
+                  <td>{{patient.Nationality}}</td>
+                  <td *ngIf="patient.PatientType==1"> Permanent</td>
+                  <td>{{patient.CreatedOn | date }} </td>
+                </tr>
+              </tbody>
+            </table> 
+          </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+
+
+</div>
+

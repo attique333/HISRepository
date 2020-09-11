@@ -1,0 +1,41 @@
+
+
+<div class="container "  >
+
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+  
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <img src="https://www.pinclipart.com/picdir/big/417-4172282_hospital-management-system-png-clipart.png" class="img-rounded" id="icon" alt="User Icon" />
+      </div>
+  
+      <hr>
+      <!-- Login Form -->
+      <form  [formGroup]="LoginForm" (submit)="Onlogin()" novalidate>
+        
+        <div class="form-group">
+        <input type="text" id="login" class="fadeIn second" name="login" placeholder="login" formControlName="UserName" >
+          <div *ngIf="UserName.touched && UserName.invalid" class="alert alert-danger" style="margin-left: 7%; margin-right:7%" >User Name Required</div>
+        </div>
+
+        <div class="form-group">
+        <input type="password" class="fadeIn second" id="login" placeholder="Password" formControlName="Password">
+        <div *ngIf="Password.touched && Password.invalid " class="alert alert-danger" style="margin-left: 7%; margin-right:7%">Password Required</div>
+        </div>
+
+        <input type="submit" class="fadeIn fourth" [disabled]="LoginForm.invalid" value="Log In">
+      </form>
+  
+      <div>
+        <a class="underlineHover" [routerLink]="" (click)="OnRegister()">Register</a>
+      </div>
+      <div id="formFooter">
+        <a class="underlineHover" href="#">Developer: @Attique 0541923503</a>
+      </div>
+  
+    </div>
+  </div>
+
+  </div>

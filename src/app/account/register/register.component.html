@@ -1,0 +1,47 @@
+<div class="container ">
+
+  <div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+
+
+      <hr>
+      <!-- Registration Form -->
+      <form [formGroup]="RegistrationForm" (submit)="OnRegistration()" novalidate>
+
+        <div class="form-group">
+          <input type="text" id="UserFullName" class="fadeIn second" name="UserFullName" placeholder="Enter Name"
+            formControlName="UserFullName">
+          <div *ngIf="UserFullName.touched && UserFullName.invalid" class="alert alert-danger"
+            style="margin-left: 7%; margin-right:7%">Full Name Required</div>
+
+        </div>
+
+        <div class="form-group">
+          <input type="text" id="login" class="fadeIn second" name="login" placeholder="User Name"
+            formControlName="UserName">
+          <div *ngIf="UserName.touched && UserName.invalid" class="alert alert-danger"
+            style="margin-left: 7%; margin-right:7%">User Name Required</div>
+
+        </div>
+
+        <div class="form-group">
+          <input type="password" class="fadeIn second" id="login" placeholder="Password" formControlName="Password">
+          <div *ngIf="Password.touched && Password.invalid " class="alert alert-danger"
+            style="margin-left: 7%; margin-right:7%">Password Required</div>
+        </div>
+
+        <input type="submit" class="fadeIn fourth" [disabled]="RegistrationForm.invalid" value="Register">
+      </form>
+
+      <div>
+        <a class="underlineHover" [routerLink]="login" (click)="OnLogin()">Already User Account</a>
+      </div>
+      <div id="formFooter">
+        <a class="underlineHover" href="#">Developer: @Attique 0541923503</a>
+      </div>
+
+    </div>
+  </div>
+
+</div>
